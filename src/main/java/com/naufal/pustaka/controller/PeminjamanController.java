@@ -25,19 +25,19 @@ public class PeminjamanController {
     }
     
     public void bersihForm(){
-        formBuku.getTxtPeminjamanId().setText("");
-        formBuku.getTxtAnggotaId().setText("");
-        formBuku.getTxtBukuId().setText("");
-        formBuku.getTxtTglpinjam().setText("");
-        formBuku.getTxtTglkembali().setText("");
+        formPeminjaman.getTxtPeminjamanId().setText("");
+        formPeminjaman.getTxtAnggotaId().setText("");
+        formPeminjaman.getTxtBukuId().setText("");
+        formPeminjaman.getTxtTglpinjam().setText("");
+        formPeminjaman.getTxtTglkembali().setText("");
     }
     
     public void getPeminjamanId(){
         Long id = Long.parseLong(formPeminjaman.getTxtPeminjamanId().getText());
         Peminjaman peminjaman = peminjamanService.getPeminjaman(id);
         if (peminjaman != null) {
-            formPeminjaman.getTxtAnggotaId().setText(peminjaman.getAnggotaId());
-            formPeminjaman.getTxtBukuId().setText(peminjaman.getBukuId());
+            formPeminjaman.getTxtAnggotaId().setText(peminjaman.getAnggotaId().toString());
+            formPeminjaman.getTxtBukuId().setText(peminjaman.getBukuId().toString());
             formPeminjaman.getTxtTglpinjam().setText(peminjaman.getTglpinjam());
             formPeminjaman.getTxtTglkembali().setText(peminjaman.getTglkembali());
         } else {
@@ -47,8 +47,8 @@ public class PeminjamanController {
     
     public void savePeminjaman(){
         Peminjaman peminjaman = new Peminjaman();
-        peminjaman.setAnggotaId(formPeminjaman.getTxtAnggotaId().getText());
-        peminjaman.setBukuId(formPeminjaman.getTxtPeminjaman().getText());
+        peminjaman.setAnggotaId(Long.parseLong(formPeminjaman.getTxtAnggotaId().getText()));
+        peminjaman.setBukuId(Long.parseLong(formPeminjaman.getTxtBukuId().getText()));
         peminjaman.setTglpinjam(formPeminjaman.getTxtTglpinjam().getText());
         peminjaman.setTglkembali(formPeminjaman.getTxtTglkembali().getText());
         peminjaman = peminjamanService.savePeminjaman(peminjaman);
@@ -63,8 +63,8 @@ public class PeminjamanController {
     public void updatePeminjaman(){
         Peminjaman peminjaman = new Peminjaman();
         peminjaman.setPeminjamanId(Long.parseLong(formPeminjaman.getTxtPeminjamanId().getText()));
-        peminjaman.setAnggotaId(formPeminjaman.getTxtAnggotaId().getText());
-        peminjaman.setBukuId(formPeminjaman.getTxtBukuId().getText());
+        peminjaman.setAnggotaId(Long.parseLong(formPeminjaman.getTxtAnggotaId().getText()));
+        peminjaman.setBukuId(Long.parseLong(formPeminjaman.getTxtBukuId().getText()));
         peminjaman.setTglpinjam(formPeminjaman.getTxtTglpinjam().getText());
         peminjaman.setTglkembali(formPeminjaman.getTxtTglkembali().getText());
         peminjaman = peminjamanService.updatePeminjaman(peminjaman);
@@ -88,11 +88,11 @@ public class PeminjamanController {
         List<Peminjaman> peminjamanList = peminjamanService.getAllPeminjaman();
         for(Peminjaman peminjaman : peminjamanList){
             Object[]row = {
-                buku.getPeminjamanId(),
-                buku.getAnggotaId(),
-                buku.getBukuId(),
-                buku.getTglpinjam(),
-                buku.getTglkembali()
+                peminjaman.getPeminjamanId(),
+                peminjaman.getAnggotaId(),
+                peminjaman.getBukuId(),
+                peminjaman.getTglpinjam(),
+                peminjaman.getTglkembali()
             };
             tabelModel.addRow(row);
         }
