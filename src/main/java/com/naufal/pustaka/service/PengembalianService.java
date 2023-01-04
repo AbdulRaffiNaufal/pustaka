@@ -5,7 +5,7 @@
 package com.naufal.pustaka.service;
 
 import com.google.gson.Gson;
-import com.naufal.pustaka.model.Peminjaman;
+import com.naufal.pustaka.model.Pengembalian;
 import java.util.List;
 import kong.unirest.GenericType;
 import kong.unirest.HttpResponse;
@@ -17,41 +17,41 @@ import kong.unirest.Unirest;
  * @author IIISI
  */
 public class PengembalianService {
-    private final String URL = "http://localhost:9002";
+    private final String URL = "http://localhost:9004";
     
-    public Peminjaman getPeminjaman(Long peminjamanId){
-        Peminjaman peminjaman = Unirest.get(URL+"/peminjaman/"+peminjamanId).asObject(Peminjaman.class).getBody();
-        if (peminjaman!=null) {
-            return peminjaman;
+    public Pengembalian getPengembalian(Long pengembalianId){
+        Pengembalian pengembalian = Unirest.get(URL+"/pengembalian/"+pengembalianId).asObject(Pengembalian.class).getBody();
+        if (pengembalian!=null) {
+            return pengembalian;
         }
         return null;
     }
     
-    public List<Peminjaman> getAllPeminjaman(){
-        List<Peminjaman> peminjamanList = Unirest.get(URL + "/peminjaman/")
-                .asObject(new GenericType<List<Peminjaman>> (){}).getBody();
-        return peminjamanList;
+    public List<Pengembalian> getAllPengembalian(){
+        List<Pengembalian> pengembalianList = Unirest.get(URL + "/pengembalian/")
+                .asObject(new GenericType<List<Pengembalian>> (){}).getBody();
+        return pengembalianList;
     }
     
-    public Peminjaman savePeminjaman(Peminjaman peminjaman){
-        HttpResponse<JsonNode> response = Unirest.post(URL + "/peminjaman/")
+    public Pengembalian savePengembalian(Pengembalian pengembalian){
+        HttpResponse<JsonNode> response = Unirest.post(URL + "/pengembalian/")
                 .header("content-type","application/json")
-                .body(peminjaman).asJson();
+                .body(pengembalian).asJson();
         Gson gson = new Gson();
-        Peminjaman a = gson.fromJson(response.getBody().toString(), Peminjaman.class);
+        Pengembalian a = gson.fromJson(response.getBody().toString(), Pengembalian.class);
         return a;
     }
     
-    public Peminjaman updatePeminjaman(Peminjaman peminjaman){
-        HttpResponse<JsonNode> response = Unirest.put(URL + "/peminjaman/")
+    public Pengembalian updatePengembalian(Pengembalian pengembalian){
+        HttpResponse<JsonNode> response = Unirest.put(URL + "/pengembalian/")
                 .header("content-type","application/json")
-                .body(peminjaman).asJson();
+                .body(pengembalian).asJson();
         Gson gson = new Gson();
-        Peminjaman a = gson.fromJson(response.getBody().toString(), Peminjaman.class);
+        Pengembalian a = gson.fromJson(response.getBody().toString(), Pengembalian.class);
         return a;
     }
     
-    public void deletePeminjaman(Long peminjamanId){
-        Unirest.delete(URL + "/peminjaman/"+peminjamanId).asEmpty();
+    public void deletePengembalian(Long pengembalianId){
+        Unirest.delete(URL + "/pengembalian/"+pengembalianId).asEmpty();
     }
 }

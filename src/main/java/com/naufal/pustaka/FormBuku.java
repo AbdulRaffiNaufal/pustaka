@@ -4,7 +4,6 @@
  */
 package com.naufal.pustaka;
 
-import com.naufal.pustaka.controller.AnggotaController;
 import com.naufal.pustaka.controller.BukuController;
 import javax.swing.JTable;
 import javax.swing.JTextField;

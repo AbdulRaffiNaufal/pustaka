@@ -4,9 +4,9 @@
  */
 package com.naufal.pustaka.controller;
 
-import com.naufal.pustaka.FormPeminjaman;
-import com.naufal.pustaka.model.Peminjaman;
-import com.naufal.pustaka.service.PeminjamanService;
+import com.naufal.pustaka.FormPengembalian;
+import com.naufal.pustaka.model.Pengembalian;
+import com.naufal.pustaka.service.PengembalianService;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -38,8 +38,8 @@ public class PengembalianController {
         if (pengembalian != null) {
             formPengembalian.getTxtPeminjamanId().setText(pengembalian.getPeminjamanId().toString());
             formPengembalian.getTxtTglDikembalikan().setText(pengembalian.getTglDikembalikan());
-            formPengembalian.getTxtTerlambat().setText(pengembalian.getTerlambat());
-            formPengembalian.getTxtDenda().setText(pengembalian.getDenda());
+            formPengembalian.getTxtTerlambat().setText(Integer.toString(pengembalian.getTerlambat()));
+            formPengembalian.getTxtDenda().setText(Double.toString(pengembalian.getDenda()));
         } else {
             JOptionPane.showMessageDialog(formPengembalian, "Data Tidak Ada");
         }
@@ -48,9 +48,9 @@ public class PengembalianController {
     public void savePengembalian(){
         Pengembalian pengembalian = new Pengembalian();
         pengembalian.setPeminjamanId(Long.parseLong(formPengembalian.getTxtPeminjamanId().getText()));
-        pengembalian.setTglDikembalikan(Long.parseLong(formPengembalian.getTxtTglDikembalikan().getText()));
-        pengembalian.setTerlambat(formPengembalian.getTxtTerlambat().getText());
-        pengembalian.setDenda(formPengembalian.getTxtDenda().getText());
+        pengembalian.setTglDikembalikan(formPengembalian.getTxtTglDikembalikan().getText());
+        pengembalian.setTerlambat(Integer.parseInt(formPengembalian.getTxtTerlambat().getText()));
+        pengembalian.setDenda(Double.parseDouble(formPengembalian.getTxtDenda().getText()));
         pengembalian = pengembalianService.savePengembalian(pengembalian);
         if (pengembalian !=null){
             formPengembalian.getTxtPengembalianId().setText(pengembalian.getPengembalianId().toString());
@@ -64,9 +64,9 @@ public class PengembalianController {
         Pengembalian pengembalian = new Pengembalian();
         pengembalian.setPengembalianId(Long.parseLong(formPengembalian.getTxtPeminjamanId().getText()));
         pengembalian.setPeminjamanId(Long.parseLong(formPengembalian.getTxtPeminjamanId().getText()));
-        pengembalian.setTglDikembalikan(Long.parseLong(formPengembalian.getTxtTglDikembalikan().getText()));
-        pengembalian.setTerlambat(formPengembalian.getTxtTerlambat().getText());
-        pengembalian.setDenda(formPengembalian.getTxtDenda().getText());
+        pengembalian.setTglDikembalikan(formPengembalian.getTxtTglDikembalikan().getText());
+        pengembalian.setTerlambat(Integer.parseInt(formPengembalian.getTxtTerlambat().getText()));
+        pengembalian.setDenda(Double.parseDouble(formPengembalian.getTxtDenda().getText()));
         pengembalian = pengembalianService.updatePengembalian(pengembalian);
         if (pengembalian !=null){
             formPengembalian.getTxtPengembalianId().setText(pengembalian.getPengembalianId().toString());

@@ -4,6 +4,10 @@
  */
 package com.naufal.pustaka;
 
+import com.naufal.pustaka.controller.PengembalianController;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author IIISI
@@ -13,9 +17,39 @@ public class FormPengembalian extends javax.swing.JFrame {
     /**
      * Creates new form FormPengembalian
      */
+    PengembalianController controller;
     public FormPengembalian() {
         initComponents();
+        controller = new PengembalianController(this);
+        controller.bersihForm();
+        controller.viewTabel();
     }
+
+    public JTable getTabelPengembalian() {
+        return tabelPengembalian;
+    }
+
+    public JTextField getTxtDenda() {
+        return txtDenda;
+    }
+
+    public JTextField getTxtPeminjamanId() {
+        return txtPeminjamanId;
+    }
+
+    public JTextField getTxtPengembalianId() {
+        return txtPengembalianId;
+    }
+
+    public JTextField getTxtTerlambat() {
+        return txtTerlambat;
+    }
+
+    public JTextField getTxtTglDikembalikan() {
+        return txtTglDikembalikan;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +67,7 @@ public class FormPengembalian extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtPengembalianId = new javax.swing.JTextField();
         txtPeminjamanId = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtTglDikembalikan = new javax.swing.JTextField();
         txtTerlambat = new javax.swing.JTextField();
         txtDenda = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
@@ -60,13 +94,23 @@ public class FormPengembalian extends javax.swing.JFrame {
 
         txtPeminjamanId.setText("jTextField2");
 
-        jTextField3.setText("jTextField3");
+        txtTglDikembalikan.setText("jTextField3");
+        txtTglDikembalikan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTglDikembalikanActionPerformed(evt);
+            }
+        });
 
         txtTerlambat.setText("jTextField4");
 
         txtDenda.setText("jTextField5");
 
         btnCari.setText("Cari");
+        btnCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCariMouseClicked(evt);
+            }
+        });
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +120,11 @@ public class FormPengembalian extends javax.swing.JFrame {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseClicked(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +134,11 @@ public class FormPengembalian extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
 
         tabelPengembalian.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,7 +188,7 @@ public class FormPengembalian extends javax.swing.JFrame {
                                 .addComponent(txtPeminjamanId))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3))
+                                .addComponent(txtTglDikembalikan))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTerlambat))
@@ -166,7 +220,7 @@ public class FormPengembalian extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTglDikembalikan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -186,16 +240,44 @@ public class FormPengembalian extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(458, 500));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        controller.savePengembalian();
+        controller.viewTabel();
+        controller.bersihForm();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        controller.deletePengembalian();
+        controller.viewTabel();
+        controller.bersihForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtTglDikembalikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTglDikembalikanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTglDikembalikanActionPerformed
+
+    private void btnCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCariMouseClicked
+        // TODO add your handling code here:
+        controller.getPengembalianId();
+    }//GEN-LAST:event_btnCariMouseClicked
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        // TODO add your handling code here:
+        controller.updatePengembalian();
+        controller.viewTabel();
+        controller.bersihForm();
+    }//GEN-LAST:event_btnUpdateMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -244,11 +326,11 @@ public class FormPengembalian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tabelPengembalian;
     private javax.swing.JTextField txtDenda;
     private javax.swing.JTextField txtPeminjamanId;
     private javax.swing.JTextField txtPengembalianId;
     private javax.swing.JTextField txtTerlambat;
+    private javax.swing.JTextField txtTglDikembalikan;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,6 @@
  */
 package com.naufal.pustaka;
 
-import com.naufal.pustaka.controller.BukuController;
 import com.naufal.pustaka.controller.PeminjamanController;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -244,7 +243,8 @@ public class FormPeminjaman extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(492, 521));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPeminjamanIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPeminjamanIdActionPerformed

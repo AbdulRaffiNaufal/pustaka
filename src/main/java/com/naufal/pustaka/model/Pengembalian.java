@@ -11,7 +11,7 @@ package com.naufal.pustaka.model;
 public class Pengembalian {
     private Long pengembalianId;
     private Long peminjamanId;
-    private String tglDiKembalikan;
+    private String tglDikembalikan;
     private int terlambat;
     private double denda;
 
@@ -31,12 +31,12 @@ public class Pengembalian {
         this.peminjamanId = peminjamanId;
     }
 
-    public String getTglDiKembalikan() {
-        return tglDiKembalikan;
+    public String getTglDikembalikan() {
+        return tglDikembalikan;
     }
 
-    public void setTglDiKembalikan(String tglDiKembalikan) {
-        this.tglDiKembalikan = tglDiKembalikan;
+    public void setTglDikembalikan(String tglDikembalikan) {
+        this.tglDikembalikan = tglDikembalikan;
     }
 
     public int getTerlambat() {
@@ -54,5 +54,7 @@ public class Pengembalian {
     public void setDenda(double denda) {
         this.denda = denda;
     }
+
+    
     
 }
